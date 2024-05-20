@@ -3,12 +3,15 @@ from collections import defaultdict
 from helpers.helper import tracking
 import torch
 import cv2
-import numpy as np
+import os
 import time
 
 # Initialize global variables for selection functionality
 selected_id = None
 red_timers = {}
+
+if not os.path.exists('models/'):
+    os.makedirs('models/')
 
 def selectBbox(event, x, y, flags, param):
     global selected_id, red_timers
@@ -21,7 +24,7 @@ def selectBbox(event, x, y, flags, param):
                 return
 
 if __name__ == "__main__":   
-    link = 'http://192.168.2.103:8080/video' #IP CAM streaming link
+    link = 'assets/Main Out 2.mp4' #IP CAM streaming link
     model = YOLO('models/yolov8l.pt')
     cap = cv2.VideoCapture(link)
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
