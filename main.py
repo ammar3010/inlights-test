@@ -28,7 +28,7 @@ def select_bbox(event, x, y, flags, param):
                 return
 
 if __name__ == "__main__":   
-    link = 'assets/Corridor Enterence gate.mp4'
+    link = 'assets/Main Out 2.mp4'
     model = YOLO('models/yolov8l.pt')
     cap = cv2.VideoCapture(link)
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -74,17 +74,9 @@ if __name__ == "__main__":
                 
                 cv2.rectangle(frame, (x1, y1), (x2, y2), color=color, thickness=2)
                 cv2.putText(frame, f'ID: {track_id}', (x1, y1 - 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color, 2)
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             continue
-
-        # Clean up old trackers
-        for track_id in list(bbox_colors):
-            if track_id not in current_ids:
-                del bbox_colors[track_id]
-                if track_id in red_timers:
-                    del red_timers[track_id]
-                if track_id in bbox_coords:
-                    del bbox_coords[track_id]
 
         cv2.imshow("YOLOv8 Inference Window", frame)
 
