@@ -10,7 +10,7 @@ import time
 selected_id = None
 red_timers = {}
 
-def select_bbox(event, x, y, flags, param):
+def selectBbox(event, x, y, flags, param):
     global selected_id, red_timers
     if event == cv2.EVENT_LBUTTONDOWN:
         for track_id, (x1, y1, x2, y2) in bbox_coords.items():
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     track_history = defaultdict(lambda: [])
 
     cv2.namedWindow("YOLOv8 Inference Window", cv2.WINDOW_NORMAL)
-    cv2.setMouseCallback("YOLOv8 Inference Window", select_bbox)
+    cv2.setMouseCallback("YOLOv8 Inference Window", selectBbox)
 
     while cap.isOpened():
         ret, frame = cap.read()
