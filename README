@@ -1,15 +1,16 @@
-# YOLOv8 RTSP Video Stream Object Detection
+
+ YOLOv8 RTSP Video Stream Object Detection
 
 This project demonstrates real-time object detection and tracking using the YOLOv8 model on a video stream. The script can process an RTSP video stream (or any video file) and detect people, draw bounding boxes around them with unique colors, and allow user interaction to select a bounding box and change its color to red with a timer.
 
-## Features
+ Features
 
-- **Real-time Object Detection**: Uses the YOLOv8 model to detect people in the video stream.
-- **Bounding Box Coloring**: Assigns unique, random colors to each detected bounding box, avoiding shades of red.
-- **User Interaction**: Allows users to click on a bounding box to change its color to red and display a timer. The timer counts the elapsed time since the box was selected.
-- **Tracking**: Maintains consistent object IDs across frames, ensuring that selected bounding boxes remain consistent even if detection is momentarily lost.
+- *Real-time Object Detection*: Uses the YOLOv8 model to detect people in the video stream.
+- *Bounding Box Coloring*: Assigns unique, random colors to each detected bounding box, avoiding shades of red.
+- *User Interaction*: Allows users to click on a bounding box to change its color to red and display a timer. The timer counts the elapsed time since the box was selected.
+- *Tracking*: Maintains consistent object IDs across frames, ensuring that selected bounding boxes remain consistent even if detection is momentarily lost.
 
-## Requirements
+ Requirements
 
 - Python 3.7+
 - OpenCV
@@ -17,53 +18,53 @@ This project demonstrates real-time object detection and tracking using the YOLO
 - PyTorch
 - NumPy
 
-## Installation
+ Installation
 
-1. **Clone the Repository**:
+1. *Clone the Repository*:
    ```bash
    git clone https://github.com/ammar3010/inlights-test.git
    cd inlights-test
    ```
 
-2. **Install Dependencies**:
+2. *Install Dependencies*:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
+ Usage
 
-1. **Run the Script**:
+1. *Run the Script*:
    ```bash
    python main.py
    ```
 
-2. **Script Parameters**:
+2. *Script Parameters*:
    - `link`: Path to the RTSP video stream or local video file. Default is set to `'http://192.168.2.103:8080/video'`.
 
-## How It Works
+ How It Works
 
-1. **Initialization**:
+1. *Initialization*:
    - The script initializes the YOLOv8 model and opens the RTSP video stream.
    - A dictionary `bbox_colors` stores the bounding box colors, and `bbox_coords` stores the coordinates.
 
-2. **Object Detection and Tracking**:
+2. *Object Detection and Tracking*:
    - The script processes each frame from the video stream using `model.track` to perform detection and tracking.
    - Detected bounding boxes are assigned unique colors.
 
-3. **User Interaction**:
+3. *User Interaction*:
    - Users can click on any bounding box in the video window to select it. The selected bounding box changes its color to red, and a timer starts.
    - If another bounding box is selected, the previous box reverts to its original color, and the new box turns red with its timer reset.
 
-4. **Bounding Box Management**:
+4. *Bounding Box Management*:
    - The script maintains bounding box colors and coordinates, updates them in each frame, and cleans up old trackers.
 
-## Code Explanation
+ Code Explanation
 
-### Main Script (`main.py`)
+ Main Script (`main.py`)
 
-- **Initialization**: Sets up the video capture, YOLO model, and necessary dictionaries.
-- **Mouse Callback Function**: Defines `select_bbox` to handle mouse click events for selecting bounding boxes.
-- **Main Loop**:
+- *Initialization*: Sets up the video capture, YOLO model, and necessary dictionaries.
+- *Mouse Callback Function*: Defines `select_bbox` to handle mouse click events for selecting bounding boxes.
+- *Main Loop*:
   - Captures frames from the video stream.
   - Performs detection and tracking using `model.track`.
   - Updates bounding box colors and coordinates.
